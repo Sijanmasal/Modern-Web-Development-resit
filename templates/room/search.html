@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<a href="/user" class="btn btn-primary">Back to index page</a>
+<table class="table table-primary">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+    </tr>
+    {% for data in room %}
+    <tr>
+        <td>{{data.room_id}}</td>
+        <td>{{data.price}}</td>
+        <td>{{data.description}}</td>
+        {% load static %}
+        <td>
+<!--            <video width="320" height="240" controls>-->
+<!--             <source src="/{{data.room.image}}" type="video/mp4">-->
+<!--            Your browser does not support the video tag.-->
+<!--            </video>-->
+            <img width="100" src="{{data.image}}"/>
+        </td>
+        <th>
+            <a href="update/{{data.room_id}}" class="btn btn-primary">edit</a>
+            |
+            <a href="delete/{{data.room_id}}" class="btn btn-success">delete</a>
+        </th>
+    </tr>
+    {% endfor %}
+</table>
+        <!--to active selected tab in sidebar-->
+<script type="text/javascript">
+    $(function () {
+        $('.sidebar').find('.active').removeClass('active');
+        $('#room').addClass('active');
+    });
+</script>
+{% endblock %}

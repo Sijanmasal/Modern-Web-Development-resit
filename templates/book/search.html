@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<a href="/user" class="btn btn-primary">Back to index page</a>
+<table class="table table-primary">
+    <tr>
+        <th>ID</th>
+        <th>customer</th>
+        <th>room</th>
+
+    </tr>
+    {% for data in book %}
+    <tr>
+        <td>{{data.book_id}}</td>
+        <td>Name: {{data.customer.name}}<br/>
+            Username: {{data.customer.username}}<br/>
+            Contact: {{data.customer.contact}}<br>
+        </td>
+        {% load static %}
+        <td><img width="100" src="/static/{{data.room.image}}"/><br>
+            Room : {{data.room.description}}<br>
+            Price: Rs{{data.room.price}}<br>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+        <!--to active selected tab in sidebar-->
+<script type="text/javascript">
+    $(function () {
+        $('.sidebar').find('.active').removeClass('active');
+        $('#user').addClass('active');
+    });
+</script>
+{% endblock %}
